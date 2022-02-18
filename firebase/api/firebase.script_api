@@ -23,3 +23,12 @@
     - name: callback
       type: function
       desc: Function to invoke with the auth token (self, token)
+
+  - name: get_installation_id
+    type: function
+    desc: Get the Firebase Installation id
+
+    parameters:
+    - name: callback
+      type: function
+      desc: Function to invoke with the id (self, id)

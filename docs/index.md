@@ -95,7 +95,12 @@ function init(self)
         
         -- firebase is ready to use!
         
-        -- installation auth token can be used for configuring test devices for A/B tests
+        -- installation id can be used for configuring test devices for A/B tests
+        firebase.get_installation_id(function(self, id)
+            print("installation id is " .. id)
+        end)
+        
+        -- installation auth token can also be used for configuring test devices for A/B tests, but its lifetime is shorter
         firebase.get_installation_auth_token(function(self, token)
             print("installation auth token is " .. token)
         end)
