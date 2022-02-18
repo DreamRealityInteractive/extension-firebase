@@ -98,7 +98,7 @@ static int Firebase_GetInstallationId(lua_State* L) {
 
 	auto* installations_object = installations::Installations::GetInstance(firebase::App::GetInstance());
 
-	installations_object->GetId(false)
+	installations_object->GetId()
 		.OnCompletion([](const Future< std::string >& completed_future) {
 		if (!dmScript::IsCallbackValid(g_InstallationIdCallback))
 		{
