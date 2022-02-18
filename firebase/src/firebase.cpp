@@ -87,7 +87,7 @@ static int Firebase_GetInstallationAuthToken(lua_State* L) {
 
 		dmScript::DestroyCallback(g_InstallationAuthTokenCallback);
 		g_InstallationAuthTokenCallback = 0;
-			});
+	});
 	return 0;
 }
 
@@ -131,7 +131,7 @@ static int Firebase_GetInstallationId(lua_State* L) {
 
 		dmScript::DestroyCallback(g_InstallationIdCallback);
 		g_InstallationIdCallback = 0;
-			});
+	});
 	return 0;
 }
 
