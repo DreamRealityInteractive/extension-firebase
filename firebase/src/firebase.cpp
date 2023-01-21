@@ -25,26 +25,32 @@ static void ReadAppOptions(lua_State* L, AppOptions& options)
 		const char* attr = lua_tostring(L, -2);
 		if (strcmp(attr, "api_key") == 0)
 		{
+			dmLogInfo("ReadAppOptions: api_key\n");
 			options.set_api_key(luaL_checkstring(L, -1));
 		}
 		else if (strcmp(attr, "app_id") == 0)
 		{
+			dmLogInfo("ReadAppOptions: app_id\n");
 			options.set_app_id(luaL_checkstring(L, -1));
 		}
 		else if (strcmp(attr, "database_url") == 0)
 		{
+			dmLogInfo("ReadAppOptions: database_url\n");
 			options.set_database_url(luaL_checkstring(L, -1));
 		}
 		else if (strcmp(attr, "messaging_sender_id") == 0)
 		{
+			dmLogInfo("ReadAppOptions: messaging_sender_id\n");
 			options.set_messaging_sender_id(luaL_checkstring(L, -1));
 		}
 		else if (strcmp(attr, "project_id") == 0)
 		{
+			dmLogInfo("ReadAppOptions: project_id\n");
 			options.set_project_id(luaL_checkstring(L, -1));
 		}
 		else if (strcmp(attr, "storage_bucket") == 0)
 		{
+			dmLogInfo("ReadAppOptions: storage_bucket\n");
 			options.set_storage_bucket(luaL_checkstring(L, -1));
 		}
 		lua_pop(L, 1);
@@ -54,6 +60,8 @@ static void ReadAppOptions(lua_State* L, AppOptions& options)
 
 static int Firebase_Init(lua_State* L) {
 	DM_LUA_STACK_CHECK(L, 2);
+
+	dmLogInfo("Firebase_Init\n");
 
 #if defined (DM_DEBUG)
 	FIR_PlatformDebugInit();
@@ -76,10 +84,12 @@ static int Firebase_Init(lua_State* L) {
 #else
 	if (lua_isnil(L, 1))
 	{
+		dmLogInfo("Calling App::Create()\n");
 		firebase_app_ = App::Create();
 	}
 	else
 	{
+		dmLogInfo("Calling App::Create(options)\n");
 		AppOptions options;
 		ReadAppOptions(L, options);
 		firebase_app_ = App::Create(options);
@@ -88,11 +98,13 @@ static int Firebase_Init(lua_State* L) {
 
 	if(!firebase_app_)
 	{
+		dmLogInfo("firebase_app_ success\n");
 		lua_pushboolean(L, 0);
 		lua_pushstring(L, "Failed to create Firebase App");
 	}
 	else
 	{
+		dmLogInfo("firebase_app_ failure\n");
 		lua_pushboolean(L, 1);
 		lua_pushnil(L);
 	}
