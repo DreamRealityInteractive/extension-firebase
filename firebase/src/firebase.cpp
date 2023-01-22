@@ -89,22 +89,24 @@ static int Firebase_Init(lua_State* L) {
 	}
 	else
 	{
-		dmLogInfo("Calling App::Create(options)\n");
+		dmLogInfo("Calling ReadAppOptions\n");
 		AppOptions options;
 		ReadAppOptions(L, options);
+		dmLogInfo("Calling App::Create(options)\n");
 		firebase_app_ = App::Create(options);
+		dmLogInfo("Called App::Create(options)\n");
 	}
 #endif
 
 	if(!firebase_app_)
 	{
-		dmLogInfo("firebase_app_ success\n");
+		dmLogInfo("firebase_app_ failure\n");
 		lua_pushboolean(L, 0);
 		lua_pushstring(L, "Failed to create Firebase App");
 	}
 	else
 	{
-		dmLogInfo("firebase_app_ failure\n");
+		dmLogInfo("firebase_app_ success\n");
 		lua_pushboolean(L, 1);
 		lua_pushnil(L);
 	}
