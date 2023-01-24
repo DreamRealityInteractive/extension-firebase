@@ -89,7 +89,7 @@ static int Firebase_Init(lua_State* L) {
 	}
 	else
 	{
-		firebase::App* pPrevApp = GetInstance();
+		firebase::App* pPrevApp = App.GetInstance();
 		if (pPrevApp)
 		{
 			dmLogInfo("There was already an instance\n");
