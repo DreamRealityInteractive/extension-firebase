@@ -58,6 +58,16 @@ static void ReadAppOptions(lua_State* L, AppOptions& options)
 	lua_pop(L, 1);
 }
 
+static void LogAppOptions(AppOptions& options)
+{
+	dmLogInfo("AppOptions: api_key %s\n", options.api_key());
+	dmLogInfo("AppOptions: app_id %s\n", options.app_id());
+	dmLogInfo("AppOptions: database_url %s\n", options.database_url());	
+	dmLogInfo("AppOptions: messaging_sender_id %s\n", options.messaging_sender_id());	
+	dmLogInfo("AppOptions: project_id %s\n", options.project_id());	
+	dmLogInfo("AppOptions: storage_bucket %s\n", options.storage_bucket());
+}
+
 static int Firebase_Init(lua_State* L) {
 	DM_LUA_STACK_CHECK(L, 2);
 
@@ -103,6 +113,7 @@ static int Firebase_Init(lua_State* L) {
 		dmLogInfo("Calling ReadAppOptions\n");
 		AppOptions options;
 		ReadAppOptions(L, options);
+		LogAppOptions(options);
 		dmLogInfo("Calling App::Create(options)\n");
 		firebase_app_ = App::Create(options);
 		dmLogInfo("Called App::Create(options)\n");
