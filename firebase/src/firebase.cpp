@@ -89,6 +89,17 @@ static int Firebase_Init(lua_State* L) {
 	}
 	else
 	{
+		firebase::App* pPrevApp = GetInstance();
+		if (pPrevApp)
+		{
+			dmLogInfo("There was already an instance\n");
+			const char* name = pPrevApp->name();
+
+			if (name)
+			{
+				dmLogInfo("Name &%s\n", name);
+			}
+		}
 		dmLogInfo("Calling ReadAppOptions\n");
 		AppOptions options;
 		ReadAppOptions(L, options);
