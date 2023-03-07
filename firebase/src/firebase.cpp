@@ -4,7 +4,7 @@
 #include <dmsdk/dlib/log.h>
 #include <dmsdk/sdk.h>
 
-#if defined(DM_PLATFORM_ANDROID) || defined(DM_PLATFORM_IOS)
+#if defined(DM_PLATFORM_ANDROID) || defined(DM_PLATFORM_IOS) || defined(DM_PLATFORM_OSX) || defined(DM_PLATFORM_LINUX) || defined(DM_PLATFORM_WINDOWS)
 
 #include "luautils.h"
 #include "platform_utils.h"
@@ -179,7 +179,7 @@ dmExtension::Result AppInitializeFirebaseExtension(dmExtension::AppParams* param
 }
 
 dmExtension::Result InitializeFirebaseExtension(dmExtension::Params* params) {
-#if !defined(DM_PLATFORM_ANDROID) && !defined(DM_PLATFORM_IOS)
+#if !defined(DM_PLATFORM_ANDROID) && !defined(DM_PLATFORM_IOS) && !defined(DM_PLATFORM_OSX) && !defined(DM_PLATFORM_LINUX) && !defined(DM_PLATFORM_WINDOWS)
 	dmLogInfo("Extension %s is not supported", LIB_NAME);
 #else
 	LuaInit(params->m_L);
